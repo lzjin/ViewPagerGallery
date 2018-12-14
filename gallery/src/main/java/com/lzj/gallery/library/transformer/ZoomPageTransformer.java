@@ -55,7 +55,6 @@ public class ZoomPageTransformer implements ViewPager.PageTransformer {
             float alpha = MIN_ALPHA + (1 - MIN_ALPHA) * (1 - Math.abs(position));
             view.setAlpha(alpha);
 
-
         }
         /**
          * [1,+oo） 相对于右边第一页，其右边的所有页面
