@@ -6,7 +6,7 @@
 <p><img  width="300" height="500"  src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/ic_banner2.png">
 <h2>使用步骤</h2>
 </br>首先在gradle文件中添加
-<h3> implementation 'com.github.lzjin:ViewPagerGallery:1.05' </h3>
+<h3> implementation 'com.github.lzjin:ViewPagerGallery:1.06' </h3>
 
 <h3>代码使用</h3>
 viewPager.initBanner(urlList, true) </br>
