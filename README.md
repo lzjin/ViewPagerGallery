@@ -28,6 +28,7 @@
 1、gradle引入
 <h4> implementation 'com.github.lzjin:ViewPagerGallery:1.06' </h4>
 <h4>2、xml文件</h4>
+
 /<com.lzj.gallery.library.views.BannerViewPager </br>
         android:id="@+id/viewPager" </br>
         android:layout_width="match_parent" </br>
