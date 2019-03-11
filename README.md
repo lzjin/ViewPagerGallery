@@ -28,18 +28,18 @@
 </br>首先在gradle文件中添加
 <h3> implementation 'com.github.lzjin:ViewPagerGallery:1.06' </h3>
 <h3>使用参考</h3>
-```Java
-viewPager.initBanner(urlList, true) </br>
-         .addPageMargin(10, 60) </br>
-         .addPoint(6)           </br>
-         .addPointBottom(7)     </br>
-         .addStartTimer(5)      </br>
-         .addRoundCorners(12)   </br>
-         .finishConfig()        </br>
-         .addBannerListener(new BannerViewPager.OnClickBannerListener() { </br>
-         @Override              </br>
-         public void onBannerClick(int i) { </br>
-             //点击回调          </br>
-         }                      </br>
-         });                    </br>
-```      
+```java
+viewPager.initBanner(urlList, true)
+         .addPageMargin(10, 60)
+         .addPoint(5)
+         .addPointBottom(7)
+         .addStartTimer(5)
+         .addRoundCorners(12)
+         .finishConfig()
+         .addBannerListener(new BannerViewPager.OnClickBannerListener() {
+         @Override
+         public void onBannerClick(int i) {
+             //点击回调
+         }
+         });
+```
