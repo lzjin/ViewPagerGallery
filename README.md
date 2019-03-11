@@ -25,21 +25,29 @@
 <h3>效果三:平面铺满常见效果</h3>
 <p><img    src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/ic_banner3.png">
 <h2>使用步骤</h2>
-</br>首先在gradle文件中添加
-<h3> implementation 'com.github.lzjin:ViewPagerGallery:1.06' </h3>
-<h3>使用参考</h3>
-```java
-viewPager.initBanner(urlList, true)
-         .addPageMargin(10, 60)
-         .addPoint(5)
-         .addPointBottom(7)
-         .addStartTimer(5)
-         .addRoundCorners(12)
-         .finishConfig()
-         .addBannerListener(new BannerViewPager.OnClickBannerListener() {
-         @Override
-         public void onBannerClick(int i) {
-             //点击回调
-         }
-         });
-```
+1、gradle引入
+<h4> implementation 'com.github.lzjin:ViewPagerGallery:1.06' </h4>
+<h4>2、使用参考</h4>
+<com.lzj.gallery.library.views.BannerViewPager </br>
+        android:id="@+id/viewPager" </br>
+        android:layout_width="match_parent" </br>
+        android:layout_height="150dp"/> </br>
+<h4>3、xml文件</h4>
+ <com.lzj.gallery.library.views.BannerViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"/>
+<h4>4、使用参考</h4>
+viewPager.initBanner(urlList, true) </br>
+         .addPageMargin(10, 60) </br>
+         .addPoint(6)           </br>
+         .addPointBottom(7)     </br>
+         .addStartTimer(5)      </br>
+         .addRoundCorners(12)   </br>
+         .finishConfig()        </br>
+         .addBannerListener(new BannerViewPager.OnClickBannerListener() { </br>
+         @Override              </br>
+         public void onBannerClick(int i) { </br>
+             //点击回调          </br>
+         }                      </br>
+         });                    </br>
