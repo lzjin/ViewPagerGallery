@@ -27,17 +27,12 @@
 <h2>使用步骤</h2>
 1、gradle引入
 <h4> implementation 'com.github.lzjin:ViewPagerGallery:1.06' </h4>
-<h4>2、使用参考</h4>
+<h4>2、xml文件</h4>
 <com.lzj.gallery.library.views.BannerViewPager </br>
         android:id="@+id/viewPager" </br>
         android:layout_width="match_parent" </br>
         android:layout_height="150dp"/> </br>
-<h4>3、xml文件</h4>
- <com.lzj.gallery.library.views.BannerViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"/>
-<h4>4、使用参考</h4>
+<h4>3、使用参考</h4>
 viewPager.initBanner(urlList, true) </br>
          .addPageMargin(10, 60) </br>
          .addPoint(6)           </br>
