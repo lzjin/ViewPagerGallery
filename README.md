@@ -26,10 +26,10 @@
 <p><img    src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/ic_banner3.png">
 <h2>使用步骤</h2>
 1、gradle引入
-<h4> implementation 'com.github.lzjin:ViewPagerGallery:1.06' </h4>
+<h3> implementation 'com.github.lzjin:ViewPagerGallery:1.06' </h3>
 <h4>2、xml文件</h4>
 
-/<com.lzj.gallery.library.views.BannerViewPager </br>
+<com.lzj.gallery.library.views.BannerViewPager </br>
         android:id="@+id/viewPager" </br>
         android:layout_width="match_parent" </br>
         android:layout_height="150dp"/> </br>
