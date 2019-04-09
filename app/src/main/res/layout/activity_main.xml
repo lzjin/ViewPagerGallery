@@ -4,7 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.lzj.gallery.MainActivity">
+
+
+    <!--3D-->
+
+    <com.lzj.gallery.library.views.BannerViewPager
+        android:id="@+id/banner_3d"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+    </com.lzj.gallery.library.views.BannerViewPager>
+
+
+    <!--002-->
+    <com.lzj.gallery.library.views.BannerViewPager
+        android:id="@+id/banner_2"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+    </com.lzj.gallery.library.views.BannerViewPager>
+
+    <!--003-->
+    <com.lzj.gallery.library.views.BannerViewPager
+        android:id="@+id/banner_3"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+    </com.lzj.gallery.library.views.BannerViewPager>
 
 
 

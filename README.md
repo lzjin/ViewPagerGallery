@@ -1,6 +1,9 @@
 # ViewPagerGallery
 不懂看博客、不懂看博客、不懂看博客
 <p>[博客讲解地址](https://blog.csdn.net/lin857/article/details/84644569)
+## Demo
+[下载 APK-Demo](https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/app-debug.apk)
+
 <h3>特点功能:</h3>
 <h6>支持左右无限滑动轮播</h6>
 <h6>支持3D效果的画廊轮播</h6>
