@@ -2,7 +2,7 @@
 不懂看博客、不懂看博客、不懂看博客
 <p>[博客讲解地址](https://blog.csdn.net/lin857/article/details/84644569)
 
-<p>[下载体验APK-Demo](https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/app-debug.apk)
+<p>[下载体验APK-Demo](https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/app.apk)
 
 <h3>特点功能:</h3>
 <h6>支持左右无限滑动轮播</h6>
