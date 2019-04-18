@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,7 +22,7 @@ import java.util.List;
  * banner的控件处理
  */
 
-public class BannerViewPager extends RelativeLayout implements View.OnTouchListener,ViewPager.OnPageChangeListener{
+public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageChangeListener{
     private View mLayout;//布局
     private Activity mContext;//上下文
     private ViewPager mViewPager;//viewpager
@@ -90,7 +89,14 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
         currentIndex=startCurrentIndex%mList.size();
 
         mPagerAdapter = new BannerPagerAdapter(mList,mContext);
-
+        mPagerAdapter.setOnClickImagesListener(new BannerPagerAdapter.OnClickImagesListener() {
+            @Override
+            public void onImagesClick(int position) {
+                if(mBannerListener!=null){
+                   mBannerListener.onBannerClick(position);
+                }
+            }
+        });
 
         mViewPager.setAdapter(mPagerAdapter);
         if(isGallery){
@@ -99,7 +105,6 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
 
         mViewPager.setCurrentItem(startCurrentIndex);
         mViewPager.setOffscreenPageLimit(2);//设置预加载的数量，这里设置了2,会预加载中心item左边两个Item和右边两个Item
-        mViewPager.setOnTouchListener(this);
         mViewPager.addOnPageChangeListener(this);
         return this;
     }
@@ -122,7 +127,14 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
         currentIndex=startCurrentIndex%mList.size();
 
         mPagerAdapter = new BannerPagerAdapter(mList,mContext);
-
+        mPagerAdapter.setOnClickImagesListener(new BannerPagerAdapter.OnClickImagesListener() {
+            @Override
+            public void onImagesClick(int position) {
+                if(mBannerListener!=null){
+                    mBannerListener.onBannerClick(position);
+                }
+            }
+        });
 
         mViewPager.setAdapter(mPagerAdapter);
         if(isGallery){
@@ -131,7 +143,6 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
 
         mViewPager.setCurrentItem(startCurrentIndex);
         mViewPager.setOffscreenPageLimit(2);//设置预加载的数量，这里设置了2,会预加载中心item左边两个Item和右边两个Item
-        mViewPager.setOnTouchListener(this);
         mViewPager.addOnPageChangeListener(this);
         return this;
     }
@@ -321,35 +332,6 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
 //            mHandler.sendEmptyMessage(1001);//在此线程中，不能操作ui主线程
 //        }
 //    }
-
-
-
-    /**
-     * 点击Page事件
-     *
-     * 由于部分机型始终会执行ACTION_MOVE
-     * 因此采用的间隔时间来判断是否为点击事件
-     */
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        if(mBannerListener!=null){
-            switch (event.getAction()){
-                case MotionEvent.ACTION_DOWN:
-                    firstTime = System.currentTimeMillis();
-                    break ;
-                case MotionEvent.ACTION_MOVE:
-                    break ;
-                case  MotionEvent.ACTION_UP :
-                    secondTime = System.currentTimeMillis();
-                    if (secondTime - firstTime < 100) {
-                        mBannerListener.onBannerClick(currentIndex);
-                    }
-                    break ;
-            }
-        }
-        return false;
-    }
-
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)

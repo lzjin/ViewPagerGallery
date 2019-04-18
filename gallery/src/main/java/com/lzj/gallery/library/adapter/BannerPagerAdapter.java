@@ -25,12 +25,33 @@ public class BannerPagerAdapter  extends PagerAdapter {
     private int defaultImg=R.mipmap.ic_banner_error;//默认图片
     private int mRoundCorners=-1;
 
+    /**
+     * 默认
+     * @param defaultImg
+     */
     public void setDefaultImg(int defaultImg) {
         this.defaultImg = defaultImg;
     }
 
+    /**
+     * 设置圆角
+     * @param mRoundCorners
+     */
     public void setmRoundCorners(int mRoundCorners) {
         this.mRoundCorners = mRoundCorners;
+    }
+
+    /**
+     * 点击回调
+     */
+    public static interface OnClickImagesListener {
+        void onImagesClick(int position);
+    }
+    private OnClickImagesListener mImagesListener;
+
+    public void setOnClickImagesListener(OnClickImagesListener listener) {
+        mImagesListener = listener;
+
     }
 
     public BannerPagerAdapter(List<String> list,Context context){
@@ -56,8 +77,15 @@ public class BannerPagerAdapter  extends PagerAdapter {
         View view = LayoutInflater.from(mContext).inflate(R.layout.banner_img_layout,container,false);
         ImageView imageView = (ImageView) view.findViewById(R.id.img);
 
-        int index=position % mList.size();
+        final int index=position % mList.size();
         LoadImage(mList.get(index),imageView);
+        //OnClick
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mImagesListener.onImagesClick(index);
+            }
+        });
 
         container.addView(view);
         return view;
