@@ -30,7 +30,7 @@
 
 <h3>1、gradle引入</h3>
 
-<h5> implementation 'com.github.lzjin:ViewPagerGallery:1.06' </h5>
+<h5> implementation 'com.github.lzjin:ViewPagerGallery:1.1' </h5>
 
 <h4>2、xml文件</h4>
 
