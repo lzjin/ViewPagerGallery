@@ -34,7 +34,7 @@ implementation 'com.github.lzjin:ViewPagerGallery:1.2'
 #### Xml:
 ```groovy
  <com.lzj.gallery.library.views.BannerViewPager
-        android:id="@+id/viewPager"
+        android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="150dp">
 ```
