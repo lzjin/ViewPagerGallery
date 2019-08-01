@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         banner_3d.initBanner(urlList, true)//开启3D画廊效果
                 .addPageMargin(10, 50)//参数1page之间的间距,参数2中间item距离边界的间距
                 .addPoint(6)//添加指示器
+                .addStartTimer(8)//自动轮播5秒间隔
                 .addPointBottom(7)
-                .addStartTimer(5)//自动轮播5秒间隔
                 .addRoundCorners(12)//圆角
                 .finishConfig()//这句必须加
                 .addBannerListener(new BannerViewPager.OnClickBannerListener() {
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         banner_2.initBanner(urlList, false)//关闭3D画廊效果
                 .addPageMargin(10, 50)//参数1page之间的间距,参数2中间item距离边界的间距
                 .addPoint(6)//添加指示器
+                .addStartTimer(8)//自动轮播5秒间隔
                 .addPointBottom(7)
                 .addRoundCorners(12)//圆角
                 .finishConfig()//这句必须加

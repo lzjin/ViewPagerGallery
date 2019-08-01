@@ -5,25 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Fragment中可以使用" />
-    <!--002-->
-    <com.lzj.gallery.library.views.BannerViewPager
-        android:id="@+id/banner1"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp">
 
-    </com.lzj.gallery.library.views.BannerViewPager>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="RecyclerView方式使用" />
+        android:text="Fragment中RecyclerView方式使用" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

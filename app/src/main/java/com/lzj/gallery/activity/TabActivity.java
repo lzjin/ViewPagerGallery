@@ -10,8 +10,8 @@ import android.util.Log;
 
 import com.lzj.gallery.R;
 import com.lzj.gallery.adapter.TabLayoutPagerAdapter;
-import com.lzj.gallery.fragment.RecylerViewFragment;
-import com.lzj.gallery.fragment.TestFragment;
+import com.lzj.gallery.fragment.TabFragmentOne;
+import com.lzj.gallery.fragment.TabFragmentTwo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,8 +69,8 @@ public class TabActivity extends AppCompatActivity {
      */
     private void initFragment(){
         fragments = new ArrayList<>();
-        fragments.add(RecylerViewFragment.getInstance());
-        fragments.add(TestFragment.getInstance());
+        fragments.add(TabFragmentOne.getInstance());
+        fragments.add(TabFragmentTwo.getInstance());
 
 
         mAdapter  = new TabLayoutPagerAdapter(getSupportFragmentManager(),this,fragments, Arrays.asList(titles));

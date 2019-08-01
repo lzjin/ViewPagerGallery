@@ -21,8 +21,8 @@
             <com.lzj.gallery.library.views.BannerViewPager
                 android:id="@+id/banner_3d"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="#dddddd">
+                android:layout_height="130dp"
+                android:layout_marginTop="20dp">
 
             </com.lzj.gallery.library.views.BannerViewPager>
 
@@ -31,9 +31,8 @@
             <com.lzj.gallery.library.views.BannerViewPager
                 android:id="@+id/banner_2"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="30dp"
-                android:background="#dddddd">
+                android:layout_height="130dp"
+                android:layout_marginTop="20dp">
 
             </com.lzj.gallery.library.views.BannerViewPager>
 
@@ -41,9 +40,8 @@
             <com.lzj.gallery.library.views.BannerViewPager
                 android:id="@+id/banner_3"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="30dp"
-                android:background="#dddddd">
+                android:layout_height="140dp"
+                android:layout_marginTop="10dp">
 
             </com.lzj.gallery.library.views.BannerViewPager>
 
