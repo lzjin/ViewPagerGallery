@@ -7,35 +7,59 @@
     android:orientation="vertical"
     tools:context="com.lzj.gallery.MainActivity">
 
-
-    <!--3D-->
-
-    <com.lzj.gallery.library.views.BannerViewPager
-        android:id="@+id/banner_3d"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="match_parent">
 
-    </com.lzj.gallery.library.views.BannerViewPager>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <!--3D-->
 
-    <!--002-->
-    <com.lzj.gallery.library.views.BannerViewPager
-        android:id="@+id/banner_2"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="150dp">
+            <com.lzj.gallery.library.views.BannerViewPager
+                android:id="@+id/banner_3d"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="#dddddd">
 
-    </com.lzj.gallery.library.views.BannerViewPager>
-
-    <!--003-->
-    <com.lzj.gallery.library.views.BannerViewPager
-        android:id="@+id/banner_3"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="160dp">
-
-    </com.lzj.gallery.library.views.BannerViewPager>
+            </com.lzj.gallery.library.views.BannerViewPager>
 
 
+            <!--002-->
+            <com.lzj.gallery.library.views.BannerViewPager
+                android:id="@+id/banner_2"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="30dp"
+                android:background="#dddddd">
+
+            </com.lzj.gallery.library.views.BannerViewPager>
+
+            <!--003-->
+            <com.lzj.gallery.library.views.BannerViewPager
+                android:id="@+id/banner_3"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="30dp"
+                android:background="#dddddd">
+
+            </com.lzj.gallery.library.views.BannerViewPager>
+
+            <TextView
+                android:id="@+id/fragment"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="#dddddd"
+                android:text="在Fragment中使用"/>
+
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>
