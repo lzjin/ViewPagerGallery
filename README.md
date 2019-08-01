@@ -4,6 +4,7 @@
 <h2>欢迎大家Star</h2>
 <p>[下载体验APK-Demo](https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/app1.2.apk)
 <p><img   src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/gif1.gif">
+<p><img   src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/gif2.gif">
 <h3>特点功能:</h3>
 <h6>支持左右无限滑动轮播</h6>
 <h6>支持3D效果的画廊轮播</h6>
@@ -30,14 +31,14 @@ implementation 'com.github.lzjin:ViewPagerGallery:1.2'
 ```
 ## 历史版本底部
 
-##### Xml:
+#### Xml:
 ```groovy
  /<com.lzj.gallery.library.views.BannerViewPager
         android:id="@+id/viewPager//"
         android:layout_width="match_parent"
         android:layout_height="150dp"//>
 ```
-##### Java:
+#### Java:
 ```groovy
           banner.initBanner(urlList, true)//开启3D画廊效果
                 .addPageMargin(10, 50)//参数1page之间的间距,参数2中间item距离边界的间距
@@ -53,13 +54,6 @@ implementation 'com.github.lzjin:ViewPagerGallery:1.2'
                     }
                 });
 ```
-<h3>效果一:3D画廊效果</h3>
-<p><img   src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/ic_banner1.png">
-<h3>效果二:平面自定义间距效果</h3>
-<p><img   src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/ic_banner2.png">
-<h3>效果三:平面铺满常见效果</h3>
-<p><img    src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/ic_banner3.png">
-
 #### v1.2
     优化更新
  * 修复部分手机兼容问题
@@ -71,3 +65,10 @@ implementation 'com.github.lzjin:ViewPagerGallery:1.2'
   #### v1.0
      预览版
   * 不建议使用
+  
+  <h3>效果一:3D画廊效果</h3>
+  <p><img   src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/ic_banner1.png">
+  <h3>效果二:平面自定义间距效果</h3>
+  <p><img   src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/ic_banner2.png">
+  <h3>效果三:平面铺满常见效果</h3>
+  <p><img    src="https://raw.githubusercontent.com/lzjin/ViewPagerGallery/master/imgfile/ic_banner3.png">
