@@ -73,10 +73,10 @@ public class TabFragmentOne extends Fragment {
         mViewAdpter=new RecyclerViewAdpter(getActivity(),list,urlList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));//listview效果
         recyclerView.setAdapter(mViewAdpter);
-
-        View header=LayoutInflater.from(getActivity()).inflate(R.layout.tab_item_header,recyclerView,false);
-        mViewAdpter.addHeaderView(header);
-        mViewAdpter.notifyDataSetChanged();
+//
+//        View header=LayoutInflater.from(getActivity()).inflate(R.layout.tab_item_header,recyclerView,false);
+//        mViewAdpter.addHeaderView(header);
+//        mViewAdpter.notifyDataSetChanged();
 
     }
 }
