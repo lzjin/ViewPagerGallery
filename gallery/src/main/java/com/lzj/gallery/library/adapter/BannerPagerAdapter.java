@@ -1,7 +1,7 @@
 package com.lzj.gallery.library.adapter;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +9,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.lzj.gallery.library.R;
-import com.lzj.gallery.library.transformer.CornerTransform;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class BannerPagerAdapter  extends PagerAdapter {
     private Context mContext;
     private int defaultImg=R.mipmap.ic_banner_error;//默认图片
     private int mRoundCorners=-1;
-
+    private int mMaxNumber;//最大banner数
     /**
      * 默认
      * @param defaultImg
@@ -55,12 +55,20 @@ public class BannerPagerAdapter  extends PagerAdapter {
     }
 
     public BannerPagerAdapter(List<String> list,Context context){
-        this.mList = list;
+       // this.mList = list;
         this.mContext = context;
+        if(mList==null){
+            mList=list;
+        }
+        if(list.size()>9){
+            this.mMaxNumber=9;
+        } else {
+            this.mMaxNumber=list.size();
+        }
     }
     @Override
     public int getCount() {
-        return 500000;
+        return Integer.MAX_VALUE;
     }
 
     @Override
@@ -77,7 +85,7 @@ public class BannerPagerAdapter  extends PagerAdapter {
         View view = LayoutInflater.from(mContext).inflate(R.layout.banner_img_layout,container,false);
         ImageView imageView = (ImageView) view.findViewById(R.id.img);
 
-        final int index=position % mList.size();
+        final int index=position % mMaxNumber;
         LoadImage(mList.get(index),imageView);
         //OnClick
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -99,18 +107,22 @@ public class BannerPagerAdapter  extends PagerAdapter {
             Glide.with(mContext)
                     .load(url)
                     .centerCrop()
-                    .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
-                    .placeholder(defaultImg)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+                    .dontAnimate()
+                    .placeholder(defaultImg)// 加载中图片
+                    .error(defaultImg) // 加载失败图片
+                    .diskCacheStrategy( DiskCacheStrategy.AUTOMATIC )//设置磁盘缓存
+                    .into(imageview);
         }
         else {
             Glide.with(mContext)
                     .load(url)
                     .centerCrop()
-                    .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
-                    .placeholder(defaultImg)
-                    .transform(new CornerTransform(mContext, mRoundCorners))
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+                    .dontAnimate()
+                    .placeholder(defaultImg)// 加载中图片
+                    .error(defaultImg) // 加载失败图片
+                    .transform(new RoundedCorners(mRoundCorners)) //
+                    .diskCacheStrategy( DiskCacheStrategy.AUTOMATIC )//设置磁盘缓存
+                    .into(imageview);
         }
     }
 

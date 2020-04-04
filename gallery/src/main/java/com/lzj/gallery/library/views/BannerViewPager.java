@@ -1,11 +1,14 @@
 package com.lzj.gallery.library.views;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,16 +33,18 @@ public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageC
     private LinearLayout mLineIndicator;//指示器集合容器
     private ImageView[] mImageView;//小圆点imageview对象
     private List<String> mList;//url数组
+    private int mMaxNumber;//最大banner数
     private int currentIndex = 0;//当前实际page
     private int startCurrentIndex = 2000;//当前page
     private long secondTime=0,firstTime=0;
-
+    private boolean isSlide = false;
     //private Timer mTimer=null;//定时器
     //private MyTimerTask mTimerTask=null;
 
     private Handler mHandler = null;
     private AutoRollRunnable mAutoRollRunnable = null;
     private int mRollTime=5000;
+
 
     private int resId_piont_press= R.mipmap.ic_banner_point_press;
     private int resId_piont=R.mipmap.ic_banner_point;
@@ -80,13 +85,23 @@ public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageC
      * @param isGallery 是否使用3D画廊效果
      */
     public BannerViewPager initBanner(List<String> list,boolean isGallery){
-        mList=list;
+        checkException(list);
+        if(mList==null){
+            mList=list;
+            if(list.size()>9){
+                mMaxNumber=9;
+            } else {
+                mMaxNumber=list.size();
+            }
+        }
+        Log.i("test","----------------------size="+mList.size());
+
         //引入布局
         mLayout = LayoutInflater.from(mContext).inflate( R.layout.banner_view_layout, null);
         mViewPager  = (ViewPager) mLayout.findViewById(R.id.viewPager);//关闭
         mLineIndicator  = (LinearLayout) mLayout.findViewById(R.id.lineIndicator);
         //初始化位置
-        currentIndex=startCurrentIndex%mList.size();
+        currentIndex=startCurrentIndex%mMaxNumber;
 
         mPagerAdapter = new BannerPagerAdapter(mList,mContext);
         mPagerAdapter.setOnClickImagesListener(new BannerPagerAdapter.OnClickImagesListener() {
@@ -117,14 +132,22 @@ public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageC
      * @param alpha  滑动透明度变化
      */
     public BannerViewPager initBanner(List<String> list,boolean isGallery,float alpha){
-        mList=list;
-
+        checkException(list);
+        if(mList==null){
+            mList=list;
+            if(list.size()>9){
+                this.mMaxNumber=9;
+            } else {
+                this.mMaxNumber=list.size();
+            }
+        }
+        Log.i("test","----------------------size="+mList.size());
         //引入布局
         mLayout = LayoutInflater.from(mContext).inflate( R.layout.banner_view_layout, null);
         mViewPager  = (ViewPager) mLayout.findViewById(R.id.viewPager);//关闭
         mLineIndicator  = (LinearLayout) mLayout.findViewById(R.id.lineIndicator);
         //初始化位置
-        currentIndex=startCurrentIndex%mList.size();
+        currentIndex=startCurrentIndex%mMaxNumber;
 
         mPagerAdapter = new BannerPagerAdapter(mList,mContext);
         mPagerAdapter.setOnClickImagesListener(new BannerPagerAdapter.OnClickImagesListener() {
@@ -186,10 +209,10 @@ public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageC
      * 添加小圆点
      * @param distance 间距
      */
-    public BannerViewPager addPoint(int distance) {
+    public BannerViewPager addPointMargin(int distance) {
         isPoint=true;
-        mImageView = new ImageView[mList.size()];
-        for (int i = 0; i < mList.size(); i++) {
+        mImageView = new ImageView[mMaxNumber];
+        for (int i = 0; i < mMaxNumber; i++) {
             ImageView imageView=new ImageView(mContext);
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -218,8 +241,8 @@ public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageC
         isPoint=true;
         resId_piont_press=piont_press;
         resId_piont=piont;
-        mImageView = new ImageView[mList.size()];
-        for (int i = 0; i < mList.size(); i++) {
+        mImageView = new ImageView[mMaxNumber];
+        for (int i = 0; i < mMaxNumber; i++) {
             ImageView imageView=new ImageView(mContext);
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -275,16 +298,44 @@ public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageC
     private class AutoRollRunnable implements Runnable {
         //是否在轮播的标志
         boolean isRunning = false;
+        @SuppressLint("ClickableViewAccessibility")
         @Override
         public void run() {
-            if (isRunning) {
+            if (isRunning && !isSlide) {
                 int index =  mViewPager.getCurrentItem()+1;//下一个页
                 mViewPager.setCurrentItem(index);//设置此次要显示的pager
-                currentIndex=index%mList.size();
+                currentIndex=index%mMaxNumber;
                 setImageBackground(currentIndex);
                 mHandler.postDelayed(this, 1000*mRollTime);
             }
+            if (isSlide){
+                mHandler.postDelayed(this,1000*mRollTime);
+                isSlide = false;
+            }
+            //轮播图触摸监听，解决滑动计时无法停止的问题
+            /*
+             * viewPager监听触摸事件，因为我们要保证用户在手动滑动viewPager后，系统重新计时，viewPage按一定时间间隔循环展示，
+             * 当手指按上屏幕或者是手指出现滑动动作，子线程都必须撤销（计时也就是消失）
+             * 当手机松开之后系统重新计时，子线程与UI线程绑定，进行计时操作
+             */
+            mViewPager.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()){
+                        case MotionEvent.ACTION_DOWN:
+                        case MotionEvent.ACTION_MOVE:
+                            mHandler.removeCallbacks(mAutoRollRunnable);
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            isSlide = true;
+                            mHandler.post(mAutoRollRunnable);
+                            break;
+                    }
+                    return false;
+                }
+            });
         }
+
         public void start() {
             if (!isRunning) {
                 isRunning = true;
@@ -354,7 +405,7 @@ public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageC
      */
     @Override
     public void onPageSelected(int position) {
-        currentIndex=position % mList.size();
+        currentIndex=position % mMaxNumber;
         setImageBackground(currentIndex);
     }
     /**
@@ -374,5 +425,17 @@ public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageC
         }
     }
 
+    /**
+     *  检查异常
+     * @param list
+     */
+    private void checkException(List<String> list){
+        if(list==null){
+            throw new NullPointerException("The array is null at initBanner function");
+        }
+        if(list.size()==0){
+            throw new ArithmeticException("Your array size is 0");
+        }
+    }
 }
 
